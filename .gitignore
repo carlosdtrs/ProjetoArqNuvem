@@ -1,0 +1,8 @@
+# Node e Frontend
+node_modules/
+dist/
+.env
+
+# Docker e Logs
+*.log
+.DS_Store
