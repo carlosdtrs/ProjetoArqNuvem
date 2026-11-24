@@ -13,14 +13,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  backend:
+    build: ./backend
+    container_name: shopflow-backend-api
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres-orders
+
   frontend:
     build: ./frontend
     container_name: shopflow-frontend-app
     restart: always
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - postgres-orders
+      - backend
 
 volumes:
   postgres_data:
